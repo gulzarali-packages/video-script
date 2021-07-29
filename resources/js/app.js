@@ -4,9 +4,23 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import Vue from 'vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import { EmbedPlugin } from 'bootstrap-vue';
+import axios from 'axios';
 
-window.Vue = require('vue').default;
+
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue);
+Vue.use(EmbedPlugin)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin);
+Vue.prototype.$http = axios;
+
 
 /**
  * The following block of code may be used to automatically register your
@@ -26,7 +40,6 @@ Vue.component('index-component', require('./components/Home/IndexComponent.vue')
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
 const app = new Vue({
     el: '#app',
 });
